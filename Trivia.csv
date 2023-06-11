@@ -1,0 +1,11 @@
+Trivia Title,Question,Option A,Option B,Option C,Correct Answer,Default
+Batman,What is Batman's secret identity?,Bruce Wayne,Clark Kent,Peter Parker,A,TRUE
+Batman,Who is Batman's archenemy?,Joker,Lex Luthor,Doctor Octopus,A,TRUE
+Batman,Which city is Batman's main base of operations?,Metropolis,Gotham City,Arkham,B,TRUE
+Batman,What is the name of Batman's sidekick?,Harley Queen,Cat Woman,Robin,C,TRUE
+Batman,What is the name of Batman's signature vehicle?,Flash-Mobile,Batmobile,Nightmobile,B,TRUE
+Superman,What is Superman's profession?,Doctor,Lawyer,Journalist,C,TRUE
+Superman,What is Superman's alter ego?,Bruce Wayne,Clark Kent,Peter Parker,B,TRUE
+Superman,What is the name of Superman's home planet?,Krypton,Mars,Venus,A,TRUE
+Superman,What is the name of Superman's archenemy?,Doctor Octopus,The Joker,Lex Luthor,C,TRUE
+Superman,What is the name of Superman's love interest?,Mary Jane Watson,Lois Lane,Pepper Potts,B,TRUE

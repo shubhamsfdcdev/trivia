@@ -1,0 +1,86 @@
+<template>
+    <article class="slds-card">
+      <!-- Card header -->
+        <div class="slds-card__header slds-grid">
+          <header class="slds-media slds-media_center slds-has-flexi-truncate">
+            <div class="slds-media__figure">
+              <!-- Icon -->
+              <div class="slds-icon-eq slds-is-animated">
+                <div class="slds-icon-eq__bar"></div>
+                <div class="slds-icon-eq__bar"></div>
+                <div class="slds-icon-eq__bar"></div>
+              </div>
+              <span class="slds-assistive-text">Trivia</span>
+            </div>
+            <div class="slds-media__body">
+              <h2 class="slds-card__header-title">
+                <span>Trivia</span>
+              </h2>
+            </div>
+            <!-- Button to create new trivia -->
+            <template if:false={showTriviaQuestions}>
+              <div class="slds-no-flex">
+                <lightning-button label="Create New Trivia" name="Create New Trivia" onclick={showModalHandler} class="slds-m-left_x-small"></lightning-button>
+              </div>
+            </template>
+          </header>
+        </div>
+
+        <!-- Card body -->
+        <div class="flex-container slds-var-p-around_x-small">
+
+        <!-- Display trivia list -->
+        <template if:false={showTriviaQuestions}>
+          <template if:true={triviaInfo.data}>
+            <template for:each={triviaInfo.data} for:item="tri">
+              <div class="flex-item" key={tri}>
+                  <div class="slds-card__header slds-grid">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                      <div class="slds-media__body">
+                        <h2 class="slds-card__header-title">
+                            <span>{tri.Name}</span>
+                        </h2>
+                      </div>
+                      <div class="slds-no-flex">
+                        <lightning-button label="Start" name={tri.Id} onclick={showTriviaQuestionsHandler} class="slds-m-left_x-small"></lightning-button>
+                      </div>
+                    </header>
+                  </div>
+                  <div class="slds-card__body slds-card__body_inner" style="text-align: justify;">{tri.Trivia_Description__c}</div>
+              </div>
+            </template>
+          </template>
+        </template>
+        </div>
+
+        <!-- Display trivia questions -->
+        <div class="slds-p-left_medium slds-p-bottom_medium slds-p-right_medium">
+        <template if:true={showTriviaQuestions}>
+          <template if:true={triviaList}>
+            <template for:each={triviaList} for:item="trivia">
+              <div key={trivia.Id}>
+                <div name={trivia.Id}>
+                  {trivia.Question__c}
+                </div>
+                <div><input type="radio" name={trivia.Id} value="A" onchange={changeHandler}/>{trivia.Option_A__c}</div>
+                <div><input type="radio" name={trivia.Id} value="B" onchange={changeHandler}/>{trivia.Option_B__c}</div>
+                <div><input type="radio" name={trivia.Id} value="C" onchange={changeHandler}/>{trivia.Option_C__c}</div>
+                <br>
+              </div>
+            </template>
+
+            <!-- Footer with cancel and submit buttons -->
+            <footer class="slds-card__footer">
+              <button class="slds-button slds-button_neutral" onclick={cancelHandler} title="Cancel">Cancel</button>
+              <button class="slds-button slds-button_brand" onclick={submitHandler} disabled={isSubmitDisabled} title="Submit">Submit</button>
+            </footer>
+          </template>
+        </template>
+        </div>
+
+        <!--Use template if:true to display/hide popup based on isModalOpen value--> 
+        <template if:true={isModalOpen}>
+            <c-trivia-modal onhidemodal={hideModalHandler}></c-trivia-modal>
+        </template>
+    </article>
+</template>

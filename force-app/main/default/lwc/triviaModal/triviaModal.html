@@ -1,0 +1,61 @@
+<template>
+    <!-- Modal/Popup Box LWC -->
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+      <div class="slds-modal__container">
+        
+        <!-- Modal/Popup Box LWC header -->
+        <header class="slds-modal__header">
+            <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">New Trivia</h2>
+        </header>
+
+        <!-- Modal/Popup Box LWC body -->
+        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+
+          <!-- Progress indicator -->
+          <header>
+              <lightning-progress-indicator current-step={progressStep} type="base" variant="base">
+                  <lightning-progress-step label="Title Page" value="1" onclick={previousHandler}>
+                  </lightning-progress-step>
+                  <lightning-progress-step label="Q/A Page" value="2" onclick={nextHandler}>
+                  </lightning-progress-step>
+              </lightning-progress-indicator>
+          </header>
+
+          <!-- Title Page -->
+          <template if:true={primaryPageFlag}>
+            <div>
+              <lightning-input name="newTriviaTitle" placeholder="Trivia Title Here…" type="text" label="Title" value={newTriviaTitle} required></lightning-input>
+              <lightning-textarea name="newTriviaDescription" placeholder="Description Here…" type="text" label="Description" value={newTriviaDescription}></lightning-textarea>
+            </div>
+          </template>
+
+          <!-- Q/A Page -->
+          <template if:false={primaryPageFlag}>
+            <template for:each={newTrivia} for:item="item" for:index="index">
+              <div key={item.id}>
+                  <lightning-input type="text" label="Enter Question" placeholder="Question Here…" value={item.value} data-index={index} onchange={handleQuestion}></lightning-input>
+                  <lightning-input type="text" label="Enter Option A" placeholder="Option A Here…" value={item.value} data-index={index} onchange={handleOptionA}></lightning-input>
+                  <lightning-input type="text" label="Enter Option B" placeholder="Option B Here…" value={item.value} data-index={index} onchange={handleOptionB}></lightning-input>
+                  <lightning-input type="text" label="Enter Option C" placeholder="Option C Here…" value={item.value} data-index={index} onchange={handleOptionC}></lightning-input>
+                  <lightning-combobox label="Enter Correct Answer" value={selectedOption} placeholder="Select An Option…" data-index={index} options={correctOptionPicklist} onchange={handleCorrectAnswer}></lightning-combobox>
+                  <Br><Br>
+              </div>
+            </template>
+            <lightning-button label="Add More" onclick={addNewEntryHandler} data-index={index} ></lightning-button>
+          </template>
+        </div>
+
+        <!-- Modal/Popup Box LWC footer -->
+        <footer class="slds-modal__footer">
+          <button class="slds-button slds-button_neutral" onclick={hideModalHandler} title="Cancel">Cancel</button>
+          <template if:true={primaryPageFlag}>
+          <button class="slds-button slds-button_brand" onclick={nextHandler} title="Next">Next</button>
+          </template>
+          <template if:false={primaryPageFlag}>
+          <button class="slds-button slds-button_brand" onclick={finishHandler} title="OK">Finish</button>
+          </template>
+        </footer>
+      </div>
+    </section>
+  <div class="slds-backdrop slds-backdrop_open"></div>
+</template>

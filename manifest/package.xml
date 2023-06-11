@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+	<types>
+		<members>TriviaHandler</members>
+		<name>ApexClass</name>
+	</types>
+	<types>
+		<members>Trivia_Info__c.Is_Verified__c</members>
+		<members>Trivia_Info__c.Trivia_Description__c</members>
+		<members>Trivia_Question__c.Correct_Answer__c</members>
+		<members>Trivia_Question__c.Option_A__c</members>
+		<members>Trivia_Question__c.Option_B__c</members>
+		<members>Trivia_Question__c.Option_C__c</members>
+		<members>Trivia_Question__c.Question__c</members>
+		<members>Trivia_Question__c.Trivia_Info__c</members>
+		<name>CustomField</name>
+	</types>
+	<types>
+		<members>Trivia_Info__c</members>
+		<members>Trivia_Question__c</members>
+		<name>CustomObject</name>
+	</types>
+	<types>
+		<members>triviaMain</members>
+		<members>triviaModal</members>
+		<name>LightningComponentBundle</name>
+	</types>
+	<version>55.0</version>
+</Package>
